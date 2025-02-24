@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="style_home.css">
+    <link rel="stylesheet" href="home.css">
     <title>Home - Kosmikos</title>
 </head>
 
@@ -73,7 +73,6 @@
     </main>
 
     <script>
-        // Toggle between post creation forms
         function toggleForm(formId) {
             document.querySelectorAll('.post-form').forEach(form => {
                 form.classList.add('hidden');
@@ -81,27 +80,24 @@
             document.getElementById(formId).classList.toggle('hidden');
         }
 
-        // Fetch posts from the server and display them
         async function fetchPosts() {
             try {
                 const response = await fetch("/posts");
                 const posts = await response.json();
 
                 const feed = document.getElementById("posts-feed");
-                feed.innerHTML = ""; // Clear previous posts
+                feed.innerHTML = "";
 
                 posts.forEach(post => {
                     const postElement = document.createElement("div");
                     postElement.classList.add("post");
 
-                    // Display the username (modify as per backend username implementation)
                     postElement.innerHTML = `<h3>${post.username}</h3>`;
 
-                    // Display post content based on type
                     if (post.type === "text") {
                         postElement.innerHTML += `<p>${post.content}</p>`;
                     } else if (post.type === "image") {
-                        postElement.innerHTML += `<img src="${post.content}" alt="Image" class="post-image">`;
+                        postElement.innerHTML += `<img src="${post.content}" alt="Image">`;
                     } else if (post.type === "video") {
                         postElement.innerHTML += `<video controls><source src="${post.content}" type="video/mp4"></video>`;
                     } else if (post.type === "audio") {
@@ -110,7 +106,6 @@
                         postElement.innerHTML += `<a href="${post.content}" target="_blank">${post.content}</a>`;
                     }
 
-                    // Append the post to the feed
                     feed.appendChild(postElement);
                 });
             } catch (error) {
@@ -118,7 +113,6 @@
             }
         }
 
-        // Submit a post (text, image, video, etc.)
         async function submitPost(type) {
             let formData = new FormData();
             let content;
@@ -140,11 +134,10 @@
             });
 
             if (response.ok) {
-                fetchPosts(); // Reload the posts after submission
+                fetchPosts();
             }
         }
 
-        // Fetch posts when the page is loaded
         document.addEventListener("DOMContentLoaded", fetchPosts);
     </script>
 </body>

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile - Kosmikos</title>
-    <link rel="stylesheet" href="/style_profile.css">
+    <link rel="stylesheet" href="/profile.css">
 </head>
 
 <body>
@@ -24,7 +24,7 @@
 
     <main class="profile-main">
         <!-- Profile Display Mode -->
-        <section id="profile-display">
+        <section id="profile-display" class="hidden">
             <div class="profile-container">
                 <img src="images/default-profile.jpg" alt="Profile Picture" id="display-profile-img">
                 <div class="profile-text">
@@ -34,10 +34,9 @@
             </div>
             <button id="edit-profile-btn">Edit Profile</button>
         </section>
-        
-        <!-- Profile Edit Mode (Only one section) -->
-        <section id="profile-edit" class="hidden">
-            <button id="back-to-display-btn">Back to Display</button>
+
+        <!-- Profile Edit Mode -->
+        <section id="profile-edit">
             <div class="profile-pic">
                 <img src="images/default-profile.jpg" alt="Profile Picture" id="profile-img">
                 
@@ -49,7 +48,7 @@
             <div class="profile-info">
                 <label for="user-name">Name:</label>
                 <input type="text" id="user-name">
-        
+
                 <label for="bio">Bio:</label>
                 <textarea id="bio"></textarea>
             </div>
